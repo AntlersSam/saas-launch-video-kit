@@ -1,0 +1,26 @@
+{
+  "produit": "NomDuProduit",
+  "baseline": "Une phrase qui dit ce que fait le produit",
+  "format": "16:9",
+  "duree_s": 45,
+  "fps": 25,
+  "couleurs": {
+    "fond": "#FFFFFF",
+    "accent": "#7A29FF",
+    "encre": "#0A0A0F",
+    "texte_2": "#374151",
+    "texte_3": "#6B7280",
+    "fragments_gris": "#E5E7EB"
+  },
+  "polices": {
+    "titres": "Inter (ou votre police, fichier local dans fonts/)",
+    "texte": "Inter"
+  },
+  "ton": "sobre, précis, rassurant (à adapter)",
+  "regles": [
+    "Une seule couleur d'accent",
+    "Aucune couleur écrite en dur dans les compositions : variables CSS",
+    "Texte mot-clé en couleur d'accent, le reste en encre"
+  ],
+  "licences_a_verifier": ["musique (pub payante ?)", "police commerciale", "voix synthétique"]
+}
