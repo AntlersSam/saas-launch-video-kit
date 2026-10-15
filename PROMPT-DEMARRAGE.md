@@ -21,13 +21,15 @@ Règles non négociables :
 5. Tu m'expliques en français simple ; tu me demandes seulement ce qui est mon choix (libellés
    d'interface, ton, musique), avec une recommandation claire.
 
-Commence par l'étape 1 (brief) : pose-moi les questions qui manquent, puis résume le brief en
-10 lignes pour validation.
+Avance PORTE PAR PORTE : une seule question à la fois, puis tu t'arrêtes et tu attends ma réponse.
+Porte 0 : demande-moi mes vidéos de référence (propose Lovable et Numtera avec leurs liens) AVANT de commencer.
+Porte 1 : demande-moi mon design system (charte, polices, couleurs, ton) AVANT de dessiner la moindre planche.
+Les planches de storyboard se font une par une, chacune validée ; tu ne lances l'animation qu'avec mon feu vert.
 ```
 
 ## Variante courte (si le skill est déjà chargé)
 
 ```
 Lance le skill saas-launch-video pour [produit]. Format [16:9], durée [45 s], référence [lien].
-Commence par le brief.
+Commence par la porte 0 : demande-moi mes références.
 ```

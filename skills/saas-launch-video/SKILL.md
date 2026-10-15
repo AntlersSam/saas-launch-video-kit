@@ -1,84 +1,104 @@
 ---
 name: saas-launch-video
-description: Réaliser une vidéo motion de lancement de produit SaaS (30 à 60 s, voix off, musique, vrais écrans animés) avec storyboard en planches validé avant animation, mouvements doux et rendu HTML vers MP4 (HyperFrames + GSAP). À utiliser dès qu'on parle de vidéo de lancement, film produit, motion design SaaS, « launch video », storyboard vidéo, animer des écrans de produit, ou de refaire une vidéo comme une référence (Lovable, Numtera, etc.).
+description: Réaliser une vidéo motion de lancement de produit SaaS (30 à 60 s, voix off, musique, vrais écrans animés), étape par étape et avec validation de l'utilisateur à chaque porte : design system d'abord, puis brief, puis planches de storyboard une par une, et seulement ensuite l'animation (HyperFrames + GSAP) et le rendu MP4. À utiliser pour toute vidéo de lancement, film produit, motion design SaaS, « launch video », storyboard vidéo, animer des écrans de produit, ou refaire une vidéo comme une référence (Lovable, Numtera…).
 ---
 
-# Vidéo motion de lancement SaaS
+# Vidéo motion de lancement SaaS : méthode pas à pas
 
-Méthode en 6 étapes. **On ne passe à l'étape suivante qu'avec l'accord explicite de l'utilisateur**
-aux étapes 1, 3 et 5. L'animation (étape 4) est l'étape coûteuse : elle ne démarre qu'après
-validation du storyboard.
+## Règle d'or : une porte à la fois
 
-Références à lire au moment voulu (pas avant, pour économiser du contexte) :
-- `references/grammaire-mouvement.md` : règles de mouvement, courbes, animations de texte, transitions.
-- `references/brief-agent-animateur.md` : gabarit de brief pour les agents qui animent.
-- `references/lecons.md` : erreurs déjà commises, à ne pas refaire.
+Le skill avance par **portes**. À chaque porte : produire le livrable, le montrer, poser UNE question
+(avec une recommandation), puis **s'arrêter et attendre la réponse**. Ne jamais enchaîner deux portes
+dans le même message, ne jamais animer avant la porte 5. Ne jamais inventer une charte, un libellé
+d'interface ou une musique : les demander.
 
-## Étape 1. Brief (validation utilisateur)
+| Porte | Livrable | Question posée à l'utilisateur |
+|---|---|---|
+| 0 | Inventaire + **références** (vidéos qu'il aime) | « Quelles vidéos de référence ? » (proposer Lovable et Numtera, voir `ressources.md`) |
+| 1 | Design system validé (`brand.json`) | « Cette charte est-elle bonne ? » |
+| 2 | Brief de 10 lignes | « Le brief est-il juste ? » |
+| 3 | Référence analysée + structure en actes | « Cette structure vous convient ? » |
+| 4a/4b/4c | Planche 1, puis 2, puis 3 (une par message) | « Planche N : on garde, on change quoi ? » |
+| 5 | `TRANSITIONS.md` + feu vert d'animation | « Je lance l'animation (coût estimé) ? » |
+| 6 | Film 16:9 + planche des transitions | « Points à trancher (liste) ? » |
+| 7 | Déclinaisons (4:5, 9:16) | « Quel format en plus ? » (session neuve) |
 
-Collecter en une seule question groupée ce qui manque : produit et public ; script de la voix
-phrase par phrase ; format (16:9, 4:5, 9:16) et durée ; charte (voir `outils/brand.exemple.json`) ;
-voix, musique et écrans fournis ou non ; vidéo de référence.
-Rendre un **brief de 10 lignes** : structure (problème → solution → démo → preuve → appel),
-ton, charte, contraintes légales (allégations, licences musique/police). Attendre le « ok ».
+Références, à ouvrir seulement quand la porte l'exige (économie de contexte) :
+`references/grammaire-mouvement.md` (portes 4 à 6), `references/brief-agent-animateur.md` (porte 5),
+`references/lecons.md` (leçons et économie de tokens), `references/erreurs-corrigees.md` (26 erreurs
+techniques déjà rencontrées et leur correction : à lire avant la porte 6 et en cas de défaut),
+`references/voix-elevenlabs.md` (voix off ElevenLabs, musique, mixage : portes 0 et 6),
+`references/ressources.md` (outils, skills HyperFrames, commandes).
 
-## Étape 2. Référence et structure
+## Porte 0. Inventaire et références
 
-Si l'utilisateur donne une vidéo de référence : la télécharger (`yt-dlp`), sortir une planche
-(`ffmpeg -vf "fps=1,scale=360:-1,tile=6x8"`) et lire 2 planches. En tirer : la structure
-(combien de secondes de problème, de solution, de démo), le rythme (unité de temps médiane),
-les animations de texte, le rôle de la couleur. **Ne pas copier la charte de la référence**
-(couleurs, police) : copier la grammaire, pas l'habillage.
+**Avant tout travail, demander des références** : « Quelles vidéos de lancement aimez-vous (lien YouTube, LinkedIn ou fichier) ? » Proposer d'emblée deux exemples (liens dans `references/ressources.md`) : la vidéo de lancement **Lovable** (mot géant, rythme court, interfaces grossies) et **Numtera** (structure problème → solution, texte en frappe, mot-clé surligné). L'utilisateur choisit une ou plusieurs références, ou en donne d'autres ; **ne pas continuer sans au moins une référence ou un « pas de référence » explicite**. Les analyser à la porte 3.
 
-Structure par défaut d'un film de lancement de 45 s :
-1. Problème (≈ 10 s) : 4 à 5 phrases courtes, une par douleur, texte au centre.
-2. Bascule (≈ 1 s de silence) puis mot géant : la promesse.
-3. Solution (≈ 5 s) : phrase de promesse, puis le logo.
-4. Démo (≈ 22 s) : 3 à 4 écrans du produit, un par bénéfice.
-5. Preuve (≈ 3 s) : une phrase forte.
-6. Carton final fixe (≈ 5 s) : logo, statut (« bientôt disponible »), appel à l'action.
+Puis, en une seule question groupée : script de la voix (phrase par phrase), voix (fichiers ? sinon voix de synthèse ElevenLabs, voir `voix-elevenlabs.md`),
+musique (licence pub payante ?), écrans du produit (code, captures, rien), format et durée, vidéo de
+référence. Ne rien produire d'autre.
 
-Caler chaque phrase sur la voix : placer l'affichage 3 à 7 images avant le mot prononcé.
+## Porte 1. Design system (toujours AVANT les planches)
 
-## Étape 3. Storyboard en 3 planches (validation utilisateur)
+Demander la charte : couleurs (fond, accent, encre), polices (et leur licence), ton, logo, règles
+(« une seule couleur d'accent », « fond blanc »…). Cas possibles :
+- **Charte existante** : la lire (fichier, site, Figma), la résumer en `outils/brand.exemple.json`
+  rempli, la faire valider.
+- **Pas de charte** : proposer 2 pistes de style en 2 mini-planches (fond clair / fond sombre, accent,
+  police libre type Inter), recommander une, faire choisir.
+- **Charte de la vidéo de référence** : ne PAS la copier ; copier seulement la grammaire (rythme,
+  animations de texte).
+Verrouiller : une seule couleur d'accent, aucune couleur en dur (variables), fond choisi par
+l'utilisateur (ne jamais supposer sombre ou clair).
 
-Ne **jamais** animer avant. Faire 3 planches d'images clés (problème / démo-consultation / suite et
-fin), 8 à 12 images par planche, chaque image avec : instant, phrase de la voix, une note de 1 à
-2 phrases sur le mouvement. Générer avec `outils/planche.py` (JSON → PNG), regarder le résultat,
-corriger, puis présenter à l'utilisateur. Insister sur les **transitions** : les décrire en tableau
-(image de début/fin, ce qu'on voit, courbe) dans un fichier `TRANSITIONS.md` de production.
+## Porte 2. Brief
 
-Mise en page : choisir UNE mise en page dominante (centrée recommandée), et une seule exception
-motivée (ex. téléphone en deux colonnes). Écrans entiers visibles, jamais coupés.
+Résumer en 10 lignes : produit et public, promesse, structure (problème → solution → démo → preuve →
+appel), ton, charte, contraintes légales (allégations, licences). Attendre le « ok ».
 
-## Étape 4. Animation (économie de tokens)
+## Porte 3. Référence et structure
 
-Créer le projet vidéo (composition racine + une sous-composition par séquence, voir les skills
-HyperFrames : `hyperframes-core`, `hyperframes-animation`). Brancher voix, musique, polices
-locales. Découper en 3 lots indépendants (ouverture / démo / fin), **un agent Sonnet par lot**
-(effort `medium`), avec `references/brief-agent-animateur.md`. Chaque lot ne modifie que ses fichiers.
-Les éléments partagés entre lots (fenêtre qui reste d'une séquence à l'autre) ont un cadrage final
-commun écrit dans le brief.
+Si une vidéo de référence est donnée : `yt-dlp`, planche `ffmpeg` (1 image/s, 6×8), lire 2 planches ;
+en tirer structure, rythme, animations de texte, rôle de la couleur. Proposer la structure par défaut
+d'un film de 45 s : problème ≈ 10 s (4-5 phrases courtes) → bascule (silence + mot géant) → promesse
+et logo ≈ 5 s → démo ≈ 22 s (3-4 écrans, un par bénéfice) → preuve ≈ 3 s → carton final fixe ≈ 5 s.
+Caler chaque phrase sur la voix (affichage 3 à 7 images avant le mot). Valider.
 
-## Étape 5. Contrôle et rendu (validation utilisateur)
+## Porte 4. Storyboard : trois planches, UNE PAR UNE
 
-1. `npx --yes hyperframes@0.8.91 lint <projet>` : 0 erreur.
-2. Rendu court, puis **une planche des transitions** (8 images par transition) ; la regarder.
-   Corriger soi-même les défauts simples (retarder, décaler, allonger) sans relancer d'agent.
-3. Ajouter le son : `ffmpeg -i image.mp4 -i mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -shortest film.mp4`.
-4. Présenter le film **avec la liste des points à trancher** (libellés, rythme, vitesse de lecture).
+Planche 1 (problème → promesse), puis planche 2 (démo, avec ses gestes : clic, zoom, remplissage),
+puis planche 3 (suite et fin). Pour chacune : 8 à 12 images clés avec instant, phrase de la voix et note
+de mouvement de 1-2 phrases, générées par `outils/planche.py` (JSON → PNG) ; la **regarder** (Read sur
+le PNG), corriger, puis la présenter seule. Ne passer à la suivante qu'après le « on garde ».
+Mise en page : UNE dominante (centrée recommandée) + une exception motivée. Écrans toujours entiers.
+Si l'utilisateur demande une scène (« on clique sur un micro et on voit la séance s'enregistrer »),
+elle a sa **propre planche**.
 
-## Étape 6. Déclinaisons
+## Porte 5. Document de transitions, puis feu vert
 
-Seulement après validation du format principal : 4:5, 9:16, version sans voix. Ce n'est pas une
-copie : les écrans larges doivent être recomposés. Faire cela dans une session neuve.
+Écrire `TRANSITIONS.md` (règles anti-brusque + tableau : transition, images début/fin, ce qu'on voit,
+courbes). Annoncer le plan d'animation : 3 lots, un agent Sonnet `medium` par lot, durée et coût
+approximatifs. **Attendre le feu vert** avant de lancer.
+
+## Porte 6. Animation, contrôle, rendu
+
+Voix et son : suivre `references/voix-elevenlabs.md` (générer et contrôler les répliques avant de caler l'image). Projet HyperFrames (skills `hyperframes-core`, `hyperframes-animation`, `hyperframes-cli`), un agent par
+lot (`references/brief-agent-animateur.md`), ≤ 3 en parallèle. Puis : `lint` → 0 erreur ; rendu normal ;
+**planche des transitions** (8 images par transition) ; corriger soi-même les défauts simples ;
+ajouter le son (`ffmpeg … -map 0:v -map 1:a -c:v copy -c:a aac`) ; rendu « diffusion » seulement une fois
+validé. Présenter le film avec la liste des points à trancher.
+
+## Porte 7. Déclinaisons
+
+Seulement après validation du format principal. Ce n'est pas une copie : les écrans larges se
+recomposent. À faire dans une session neuve.
 
 ## Règles transverses
 
-- Une seule couleur d'accent ; jamais de couleur écrite en dur dans les compositions (variables).
-- Pas de coupe sèche, pas de flou de mouvement, pas de rebond : voir la grammaire.
-- Allégations de santé, de performance ou de sécurité dans le script : demander une relecture
-  humaine avant diffusion. Libellés d'interface inventés pour la vidéo : à signaler comme tels.
-- Licences : musique (usage publicitaire payant ?), police commerciale, voix synthétique (conditions).
-- Expliquer à l'utilisateur en français simple ; ne lui demander que ses vrais choix, avec une
-  recommandation.
+- Jamais de coupe sèche, de balayage flou, de rebond ; chaque écran lisible ≥ 1 s (voir la grammaire).
+- Allégations de santé, de performance, de sécurité ; libellés d'interface inventés ; licences de
+  musique, police, voix : à signaler et à faire valider par un humain avant diffusion.
+- Parler français simple ; ne demander que les vrais choix, avec une recommandation.
+- Économie de tokens : Opus `medium` en session principale, Sonnet `medium` pour les agents, pas de
+  workflow multi-agents ni de critique multi-lentilles sans accord, arrêter toute tâche devenue inutile,
+  sauvegarder l'état et repartir en session neuve à 40 % de contexte.

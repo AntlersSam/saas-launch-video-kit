@@ -10,7 +10,9 @@ d'animer, mouvements doux, rendu HTML → MP4.
 | Fichier | Rôle |
 |---|---|
 | `PROMPT-DEMARRAGE.md` | Le prompt à coller dans Claude Code pour démarrer. Il pose les bonnes questions puis déroule la méthode. |
-| `skills/saas-launch-video/` | Le skill (méthode en 6 étapes + 3 références : grammaire de mouvement, leçons apprises, brief d'agent animateur). |
+| `skills/saas-launch-video/` | Le skill : méthode en 8 portes (références, design system, brief, planches une par une, animation, rendu), chacune validée par vous. |
+| `skills/saas-launch-video/references/` | Grammaire de mouvement, leçons, **26 erreurs corrigées**, **voix ElevenLabs et musique**, ressources et liens de référence (Lovable, Numtera). |
+| `outils/audio/` | Exemples de scripts de contrôle de voix, de montage de musique et de mixage. |
 | `outils/planche.py` | Génère une planche de storyboard (images clés + texte + note) en PNG à partir d'un fichier JSON. |
 | `outils/brand.exemple.json` | Charte à remplir (couleurs, polices, ton) : sert de source unique au storyboard et à l'animation. |
 
@@ -19,11 +21,11 @@ d'animer, mouvements doux, rendu HTML → MP4.
 1. **Claude Code** installé (VS Code ou terminal).
 2. **Chrome** et **ffmpeg** installés (Chrome fabrique les images, ffmpeg assemble le son et la vidéo).
 3. **Node.js** installé ; le moteur de rendu se lance tout seul : `npx --yes hyperframes@0.8.91 --help`.
-4. Copier le dossier `skills/saas-launch-video/` dans `~/.claude/skills/` (Windows :
-   `C:\Users\<vous>\.claude\skills\`).
-5. Recommandé : installer aussi les skills HyperFrames de Claude Code (`/plugin`, cherchez « hyperframes ») :
-   ils décrivent le format des compositions animées (balises `data-*`, timeline GSAP).
-6. Créer un dossier vide pour votre vidéo, l'ouvrir dans Claude Code, coller `PROMPT-DEMARRAGE.md`.
+4. Copier **tout le contenu** du dossier `skills/` (le skill `saas-launch-video` et les skills HyperFrames) dans
+   `~/.claude/skills/` (Windows : `C:\Users\<vous>\.claude\skills\`).
+5. Les skills HyperFrames sont ceux de HeyGen (Apache-2.0, licence incluse) ; mises à jour : https://github.com/heygen-com/hyperframes
+6. Pour la voix : activer le connecteur **ElevenLabs** dans Claude (Réglages → Connecteurs).
+7. Créer un dossier vide pour votre vidéo, l'ouvrir dans Claude Code, coller `PROMPT-DEMARRAGE.md`.
 
 ## Ce qu'il vous faut préparer
 
